@@ -3,6 +3,7 @@ package order
 import (
 	"net/http"
 	"new/service"
+	"new/model/order"
 
 	"github.com/gin-gonic/gin"
 )
@@ -13,7 +14,7 @@ type Handlers struct {
 
 // Add - POST /order - создать заказ
 func (t Handlers) Add(ctx *gin.Context) {
-	ordr := order.Data{}
+	ordr := order.Order{}
 	if err := ctx.BindJSON(&ordr); err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{
 			"error": err.Error(),
@@ -24,7 +25,7 @@ func (t Handlers) Add(ctx *gin.Context) {
 		ctx.JSON(http.StatusBadRequest, gin.H{
 			"error": err.Error(),
 		})
-		return
+		return 
 	}
 	ctx.JSON(http.StatusCreated, gin.H{
 		"full_path": ctx.FullPath(),

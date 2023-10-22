@@ -52,3 +52,5 @@ type OrderOut struct {
 	TrackNumber     string `json:"track_number"`
 	DeliveryService string `json:"delivery_service"`
 }
+
+type List []Order
